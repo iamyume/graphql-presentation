@@ -1,0 +1,29 @@
+{
+  "name": "graphql-presentation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamyume/graphql-presentation.git"
+  },
+  "author": "Eugene Yum",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iamyume/graphql-presentation/issues"
+  },
+  "homepage": "https://github.com/iamyume/graphql-presentation#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-graphql": "^0.12.0",
+    "graphql": "^15.5.0",
+    "graphql-tools": "^7.0.4",
+    "reveal.js": "^4.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}

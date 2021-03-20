@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>GraphQL Presentation</title>
+
+        <link rel="stylesheet" href="/node_modules/reveal.js/dist/reset.css">
+        <link rel="stylesheet" href="/node_modules/reveal.js/dist/reveal.css">
+        <link rel="stylesheet" href="/node_modules/reveal.js/dist/theme/moon.css">
+
+        <!-- Theme used for syntax highlighted code -->
+        <link rel="stylesheet" href="/node_modules/reveal.js/plugin/highlight/monokai.css" id="highlight-theme">
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section data-markdown>
+                    <script type="text/template">
+                        ![GraphQL Logo](/imgs/graphql.png)<!-- .element height="20%" width="20%" -->
+
+                        # GraphQL
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## What is GraqhQL
+
+                        At its core, GraphQL is a language for querying databases from client-side applications.
+
+                        On the backend, GraphQL specifies to the API how to present the data to the client.
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## GraphQL History
+
+                        Created by Facebook in 2012, GraphQL was used internally for their mobile applications to reduce network usage.
+                        
+                        GraphQL is now supported by major programming languages, including Python, Java, C#, Javascript, Node.js, and more.
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## The Good
+
+
+                        - Make only 1 network call to bring back initial data
+                        - Bring back only the data we care about
+                        - Some level of documentation built in (data model & available queries)
+                        - Validation and type checking out-of-the-box
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## The Bad
+
+                        - Web caching complexity since all requests use the same endpoint
+                        - Performance issues with complex queries especially with nested fields
+                        - Complexity
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Why not REST?
+
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Schema
+
+                        ```js [1-4|5-12|13-19]
+                        type Query {
+                            user(id: ID!): User
+                            users: [User]
+                        }
+                        type Mutation {
+                            updateUserInfo(
+                                id: ID!,
+                                name: String, 
+                                city: String, 
+                                state: String
+                            ): User
+                        }
+                        type User {
+                            id: ID
+                            name: String
+                            city: String
+                            state: String
+                            friends: [User]
+                        }
+                        ```
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Default Supported Types
+
+                        - **Int**: *A signed 32‐bit integer.*
+                        - **Float**: *A signed double-precision floating-point value.*
+                        - **String**: *A UTF‐8 character sequence.*
+                        - **Boolean**: *true or false.*
+                        - **ID**: *The ID type represents a unique identifier, often used to refetch an object or as the key for a cache. The ID type is serialized in the same way as a String.*
+                    </script>
+                </section>
+            </div>
+        </div>
+
+        <script src="/node_modules/reveal.js/dist/reveal.js"></script>
+        <script src="/node_modules/reveal.js/plugin/notes/notes.js"></script>
+        <script src="/node_modules/reveal.js/plugin/markdown/markdown.js"></script>
+        <script src="/node_modules/reveal.js/plugin/highlight/highlight.js"></script>
+        <script>
+            Reveal.initialize({
+                hash: true,
+                // Learn about plugins: https://revealjs.com/plugins/
+                plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+            });
+        </script>
+    </body>
+</html>

@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const graphql = require('./graphql');
 const app = express();
-const port = 3000;
+const port = 8888;
 
 app.use('/node_modules', express.static(path.join(__dirname,'..','node_modules/')));
 app.all('/graphql', graphql);

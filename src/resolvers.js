@@ -31,16 +31,16 @@ module.exports = {
         },
     },
     User: {
-        friends: async (parent, args, context, info) => {
+        followers: async (parent, args, context, info) => {
             let { id } = parent;
-            console.log(`looking up friends of ${users[id].name}`);
+            console.log(`looking up followers of ${users[id].name}`);
 
             // go thru each friend id and get the user object
-            let friends = users[id].friends.map(o => {
+            let followers = users[id].followers.map(o => {
                 return users[o];
             });
 
-            return friends;
+            return followers;
         }
     }
 };

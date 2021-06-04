@@ -16,6 +16,11 @@ module.exports = [`
         name: String
         city: String
         state: String
-        friends: [User]
+        followers: [User]
+        posts: [Post]
+    }
+    type Post {
+        id: ID
+        title: String
     }
 `];

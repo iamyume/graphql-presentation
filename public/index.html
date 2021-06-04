@@ -28,9 +28,9 @@
                     <script type="text/template">
                         ## What is GraqhQL
 
-                        At its core, GraphQL is a language for querying databases from client-side applications.
+                        At its core, GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data.
 
-                        On the backend, GraphQL specifies to the API how to present the data to the client.
+                        GraphQL provides a description of the data in your API, gives clients the power to ask for exactly what they need, makes it easier to evolve APIs over time, and enables powerful developer tools.
                     </script>
                 </section>
 
@@ -38,7 +38,7 @@
                     <script type="text/template">
                         ## GraphQL History
 
-                        Created by Facebook in 2012, GraphQL was used internally for their mobile applications to reduce network usage.
+                        Created by Facebook in 2012, GraphQL was used internally for their mobile applications to reduce network usage due to slow mobile networks.
                         
                         GraphQL is now supported by major programming languages, including Python, Java, C#, Javascript, Node.js, and more.
                     </script>
@@ -47,7 +47,6 @@
                 <section data-markdown>
                     <script type="text/template">
                         ## The Good
-
 
                         - Make only 1 network call to bring back initial data
                         - Bring back only the data we care about
@@ -70,6 +69,19 @@
                     <script type="text/template">
                         ## Why not REST?
 
+                        - REST has a bunch of endpoints which return static data structures and relies on good documentation
+                        - REST APIs frequently under or over fetch data which leads to additional calls or extra data transfer
+                        - GraphQL allows front end and back end developers can work independently
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## GraphQL Building Blocks
+
+                        - *Schema*: The contract for client-server communication
+                        - *Queries or Mutations*: Clients send these to specify a request for the data they need or to modify data
+                        - *Resolvers*: Every field has a resolver function, which specifies how that field is connected to the back end and fetches data for that field
                     </script>
                 </section>
 
@@ -95,7 +107,12 @@
                             name: String
                             city: String
                             state: String
-                            friends: [User]
+                            followers: [User]
+                            posts: [Post]
+                        }
+                        type Post {
+                            id: ID
+                            title: String
                         }
                         ```
                     </script>
@@ -105,11 +122,78 @@
                     <script type="text/template">
                         ## Default Supported Types
 
-                        - **Int**: *A signed 32‐bit integer.*
-                        - **Float**: *A signed double-precision floating-point value.*
-                        - **String**: *A UTF‐8 character sequence.*
-                        - **Boolean**: *true or false.*
-                        - **ID**: *The ID type represents a unique identifier, often used to refetch an object or as the key for a cache. The ID type is serialized in the same way as a String.*
+                        - *Int*: A signed 32‐bit integer.
+                        - *Float*: A signed double-precision floating-point value.
+                        - *String*:  UTF‐8 character sequence.
+                        - *Boolean*: true or false.
+                        - *ID*: The ID type represents a unique identifier, often used to refetch an object or as the key for a cache. The ID type is serialized in the same way as a String.
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Queries
+
+                        ```js
+                        query {
+                            users {
+                                id
+                                city
+                                followers {
+                                    id
+                                    name
+                                }
+                            }
+                            user(id:"0") {
+                                id
+                                name
+                                state
+                                city
+                                posts {
+                                    id
+                                    title
+                                }
+                            }
+                        }
+                        ```
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Mutations
+
+                        ```js
+                        mutation {
+                            updateUserInfo(id:"0", city:"Underhill") {
+                                id
+                                city
+                                state
+                            }
+                        }
+                        ```
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Resolvers
+
+                        ```js
+                        mutation {
+                            updateUserInfo(id:"0", city:"Underhill") {
+                                id
+                                city
+                                state
+                            }
+                        }
+                        ```
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Demo Time
                     </script>
                 </section>
             </div>

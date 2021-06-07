@@ -179,13 +179,34 @@
                     <script type="text/template">
                         ## Resolvers
 
-                        ```js
-                        mutation {
-                            updateUserInfo(id:"0", city:"Underhill") {
-                                id
-                                city
-                                state
-                            }
+                        ```js[2-10|11-26]
+                        {
+                            Query: {
+                                user: (root, args, context) => {
+                                    const { id } = args;
+                                    return users[id];
+                                },
+                                users: (root, args, context) => {
+                                    return users;
+                                },
+                            },
+                            Mutation: {
+                                updateUserInfo: async (root, args, context) => {
+                                    let { id, name, city, state } = args;
+                        
+                                    // updating attributes if a value was given
+                                    if (name) {
+                                        users[id].name = name;
+                                    }
+                                    if (city) {
+                                        users[id].city = city;
+                                    }
+                                    if (state) {
+                                        users[id].state = state;
+                                    }
+                                    return users[id];
+                                },
+                            },
                         }
                         ```
                     </script>

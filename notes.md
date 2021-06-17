@@ -51,7 +51,55 @@ Since GraphQL specifications and reference implementation in JavaScript were ope
 
 ## Demo
 
--
+### What our stored data looks like
+
+
+
+### Query
+
+```
+query {
+    users {
+        id
+        name
+        city
+        state
+        followers {
+          	id
+            name
+        }
+    }
+}
+```
+
+### Mutations
+
+```
+mutation {
+  updateUserInfo(id:"0", city:"Philadelphia", state:"PA") {
+    id
+    name
+    city
+    state
+  }
+}
+```
+
+### Nested Data Caution
+
+```
+query {
+    users {
+        name
+        followers {
+            name
+            followers {
+                name
+            }
+        }
+    }
+}
+```
 
 
 ## Resources

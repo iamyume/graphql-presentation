@@ -1,4 +1,4 @@
-let users = require('./users');
+let { users, posts } = require('./data');
 
 module.exports = {
     Query: {
@@ -36,11 +36,18 @@ module.exports = {
             console.log(`looking up followers of ${users[id].name}`);
 
             // go thru each friend id and get the user object
-            let followers = users[id].followers.map(o => {
+            return users[id].followers.map(o => {
                 return users[o];
             });
+        },
+        posts: async (parent, args, context, info) => {
+            let { id } = parent;
+            console.log(`looking up posts of ${users[id].name}`);
 
-            return followers;
+            // go thru each friend id and get the user object
+            return posts.filter(o => {
+                return o.authorId == id;
+            });
         }
     }
 };

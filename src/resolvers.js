@@ -37,6 +37,7 @@ module.exports = {
 
             // go thru each friend id and get the user object
             return users[id].followers.map(o => {
+                console.log(`user lookup for id ${o}`);
                 return users[o];
             });
         },

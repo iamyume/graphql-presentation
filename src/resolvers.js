@@ -4,10 +4,12 @@ module.exports = {
     Query: {
         user: (root, args, context) => {
             const { id } = args;
-            console.log(`looking up ${users[id].name}`)
+            console.log(`------`);
+            console.log(`looking up ${users[id].name}`);
             return users[id];
         },
         users: (root, args, context) => {
+            console.log(`------`);
             console.log(`looking up users`)
             return users;
         },
@@ -15,6 +17,7 @@ module.exports = {
     Mutation: {
         updateUserInfo: async (root, args, context) => {
             let { id, name, city, state } = args;
+            console.log(`------`);
             console.log(`updating ${users[id].name}`);
 
             // updating attributes if a value was given
@@ -37,7 +40,6 @@ module.exports = {
 
             // go thru each friend id and get the user object
             return users[id].followers.map(o => {
-                console.log(`user lookup for id ${o}`);
                 return users[o];
             });
         },

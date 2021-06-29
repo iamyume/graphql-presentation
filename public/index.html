@@ -32,9 +32,9 @@
                     <script type="text/template">
                         ## What is GraqhQL
 
-                        At its core, GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data.
+                        At its core, it is a defined schema that acts like a contract for the client and server.
 
-                        GraphQL provides a description of the data in your API, gives clients the power to ask for exactly what they need, makes it easier to evolve APIs over time, and enables powerful developer tools.
+                        Schema provides a description of the data in your API, gives clients the power to ask for exactly what they need which makes it easier to evolve APIs over time, and enables powerful developer tools.
                     </script>
                 </section>
 
@@ -54,8 +54,9 @@
 
                         - Make only 1 network call to bring back initial data
                         - Bring back only the data we care about
-                        - Some level of documentation built in (data model & available queries)
+                        - Some level of documentation built in
                         - Validation and type checking out-of-the-box
+                        - Allows front end and back end developers to work independently
                     </script>
                 </section>
 
@@ -66,16 +67,6 @@
                         - Web caching complexity since all requests use the same endpoint
                         - Performance issues with complex queries especially with nested fields
                         - Diminishes the shared nothing architecture
-                    </script>
-                </section>
-
-                <section data-markdown>
-                    <script type="text/template">
-                        ## Why not REST?
-
-                        - REST has a bunch of endpoints which return static data structures and relies on good documentation
-                        - REST APIs frequently under or over fetch data which leads to additional calls or extra data transfer
-                        - GraphQL allows front end and back end developers can work independently
                     </script>
                 </section>
 
@@ -246,14 +237,6 @@
 
                         ```js
                         query {
-                            users {
-                                id
-                                city
-                                followers {
-                                    id
-                                    name
-                                }
-                            }
                             user(id:"0") {
                                 id
                                 name
@@ -262,6 +245,14 @@
                                 posts {
                                     id
                                     title
+                                }
+                            }
+                            users {
+                                id
+                                city
+                                followers {
+                                    id
+                                    name
                                 }
                             }
                         }
@@ -309,6 +300,21 @@
                 <section data-markdown>
                     <script type="text/template">
                         ## Resolvers
+
+                        - functions responsible for populating data
+                        - function arguments are
+                            - parent object
+                            - arguments
+                            - execution context
+                        - default resolver
+                            - return property from data object
+                            - call a function on the object with the relevant field name
+                    </script>
+                </section>
+
+                        <section data-markdown>
+                    <script type="text/template">
+                        ## Resolver Example
 
                         ```js[2-12|13-30|31-50]
                         {

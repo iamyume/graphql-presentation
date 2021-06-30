@@ -74,9 +74,7 @@
                     <script type="text/template">
                         ## REST Example
 
-                        <img style="height: 400px;" src="/imgs/rest-flow.png" />
-
-                        <a href="https://www.howtographql.com/basics/1-graphql-is-the-better-rest/">Source</a>
+                        <img style="height: 550px;" src="/imgs/rest-flow.png" alt="https://www.howtographql.com/basics/1-graphql-is-the-better-rest/" />
 
                     </script>
                 </section>
@@ -85,10 +83,7 @@
                     <script type="text/template">
                         ## GraphQL Example
 
-                        <img style="height: 400px;" src="/imgs/graphql-flow.png" />
-
-                        <a href="https://www.howtographql.com/basics/1-graphql-is-the-better-rest/">Source</a>
-
+                        <img style="height: 550px;" src="/imgs/graphql-flow.png" alt="https://www.howtographql.com/basics/1-graphql-is-the-better-rest/" />
                     </script>
                 </section>
 
@@ -190,19 +185,23 @@
                     <script type="text/template">
                         ## Schema
 
-                        ```js [1-4|5-12|13-24]
+                        ```text[1-6|7-15|16-29]
                         type Query {
+                            # A query to get a specific user
                             user(id: ID!): User
+                            # A query to get a list of all users
                             users: [User]
                         }
                         type Mutation {
+                            # A mutation to update a user's information
                             updateUserInfo(
-                                id: ID!,
-                                name: String, 
-                                city: String, 
+                                id: ID!
+                                name: String
+                                city: String
                                 state: String
                             ): User
                         }
+                        # A data model representing a user
                         type User {
                             id: ID
                             name: String
@@ -211,6 +210,7 @@
                             followers: [User]
                             posts: [Post]
                         }
+                        # A data model representing a post
                         type Post {
                             id: ID
                             title: String
@@ -376,6 +376,7 @@
                     <script type="text/template">
                         ## <a href="http://localhost:8888/graphql/" target="_blank">Demo Time</a>
 
+                        - Developer Tools (GraphiQL)
                         - Sample Query
                         - Sample Mutation
                         - Nested Query Performance Issue Warning
